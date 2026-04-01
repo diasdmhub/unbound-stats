@@ -2,7 +2,7 @@
 
 This is a simple [Unbound DNS][unbound] container recipe that exposes Unbound statistics via a lightweight web service.
 
-Although Unbound from NLnet Labs can offer detailed statistics, it only serves this data internally as simple text output. This container image build is proposed to easily integrates Unbound with monitoring tools, without relying on third-party plugins.
+Although Unbound from NLnet Labs can offer detailed statistics, it only provides this data internally as plain text output. This container image build is designed for easy integration with monitoring tools without the need for third-party plugins.
 
 > It is based on [Alpine Linux Unbound (_alpinelinux/unbound_)][alpineunbound].
 
