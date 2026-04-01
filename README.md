@@ -83,5 +83,5 @@ curl http://localhost:8080/stats
 [unboundconf]: ./unbound.conf
 [lighttpdconf]: ./lighttpd.conf
 [statscgi]: ./stats.cgi
-[entrypoint.sh]: ./entrypoint.sh
+[entrypointsh]: ./entrypoint.sh
 [Dockerfile]: ./Dockerfile
