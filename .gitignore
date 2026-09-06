@@ -1,0 +1,13 @@
+# OS/editor cruft
+.DS_Store
+*.swp
+*~
+
+# Container build/runtime leftovers
+*.tar
+*.log
+
+# Claude Code local artifacts
+.claude/settings.local.json
+.claude/scratchpad/
+CLAUDE.md
