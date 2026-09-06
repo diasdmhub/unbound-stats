@@ -38,11 +38,15 @@ The entrypoint script from the original Alpine Linux Unbound image was modified 
 
 This is the main Dockerfile that builds the new image. It installs Lighttpd, copies the configuration files, sets permissions and overrides the entrypoint script.
 
+- [📦 `docker-compose.yaml`][composeyaml]
+
+An **optional** Compose file that builds the image (_if it is not already built_) and starts the container, as an alternative to the manual `build`/`run` steps below.
+
 <BR>
 
 ## 🚀 Startup
 
-> **This is mostly agnostic to the container management tool. If your are using Docker, change `podman` to `docker`.**
+> **This is mostly agnostic to the container management tool. If your are using Docker, change `podman` to `docker` and note the observations bellow.**
 
 **1.** Clone this repository with `git`.
 
@@ -66,6 +70,14 @@ podman build --format docker -f Dockerfile -t unbound-stats .
 podman run -d --name unbound -p 53:53/udp -p 53:53/tcp -p 8080:8080 localhost/unbound-stats
 ```
 
+**Alternatively**, steps 2 and 3 can be replaced with [Compose][compose]. The `docker-compose.yaml` file builds the image automatically if it is not already present, then starts the container.
+
+```bash
+BUILDAH_FORMAT=docker podman-compose up -d
+```
+
+> `BUILDAH_FORMAT=docker` is required for the same reason as `--format docker` above: the Compose Specification has no field for Podman's build format, so it must be set through this environment variable instead. It has no effect on plain Docker Compose, since Docker only builds in this format.
+
 <BR>
 
 ## 🔍 Verify
@@ -82,6 +94,7 @@ curl http://localhost:8080/stats
 [alpineunbound]: https://hub.docker.com/r/alpinelinux/unbound
 [netlabs]: https://unbound.docs.nlnetlabs.nl/en/latest/manpages/unbound.conf.html
 [unboundcontrol]: https://unbound.docs.nlnetlabs.nl/en/latest/manpages/unbound-control.html
+[composeyaml]: ./compose.yaml
 [lightconf]: https://redmine.lighttpd.net/projects/lighttpd/wiki
 [unboundconf]: ./unbound.conf
 [lighttpdconf]: ./lighttpd.conf

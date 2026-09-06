@@ -1,0 +1,11 @@
+services:
+  unbound:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: unbound-stats
+    container_name: unbound
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "8080:8080/tcp"
