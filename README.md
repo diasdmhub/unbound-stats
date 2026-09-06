@@ -28,7 +28,7 @@ This is the main [Lighttpd configuration][lightconf] file used to start the Web 
 
 - [📦 `stats.cgi`][statscgi]
 
-This small CGI script outputs Unbound statistics when the `unbound-control stats` command is run on a web request to the `/stats` resource.
+This small CGI script outputs Unbound statistics when the `unbound-control stats_noreset` command is run on a web request to the `/stats` resource. [Using `stats_noreset`][unboundcontrol] keeps the statistics counters intact, so multiple tools (or repeated manual checks) can read `/stats` independently without resetting each other's data.
 
 - [📦 `entrypoint.sh`][entrypointsh]
 
@@ -53,8 +53,10 @@ git clone https://github.com/diasdmhub/unbound-stats.git
 **2.** Build the new image.
 
 ```bash
-podman build -f Dockerfile -t unbound-stats
+podman build --format docker -f Dockerfile -t unbound-stats .
 ```
+
+> **`--format docker` is required when using Podman**, since its build format is OCI, which has no `HEALTHCHECK` field. The instruction would be silently dropped without this flag.
 
 **3.** Start the container.
 
@@ -79,6 +81,7 @@ curl http://localhost:8080/stats
 [unbound]: https://www.nlnetlabs.nl/projects/unbound/about/
 [alpineunbound]: https://hub.docker.com/r/alpinelinux/unbound
 [netlabs]: https://unbound.docs.nlnetlabs.nl/en/latest/manpages/unbound.conf.html
+[unboundcontrol]: https://unbound.docs.nlnetlabs.nl/en/latest/manpages/unbound-control.html
 [lightconf]: https://redmine.lighttpd.net/projects/lighttpd/wiki
 [unboundconf]: ./unbound.conf
 [lighttpdconf]: ./lighttpd.conf
