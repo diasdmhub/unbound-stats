@@ -94,7 +94,7 @@ curl http://localhost:8080/stats
 [alpineunbound]: https://hub.docker.com/r/alpinelinux/unbound
 [netlabs]: https://unbound.docs.nlnetlabs.nl/en/latest/manpages/unbound.conf.html
 [unboundcontrol]: https://unbound.docs.nlnetlabs.nl/en/latest/manpages/unbound-control.html
-[composeyaml]: ./compose.yaml
+[composeyaml]: ./docker-compose.yaml
 [lightconf]: https://redmine.lighttpd.net/projects/lighttpd/wiki
 [unboundconf]: ./unbound.conf
 [lighttpdconf]: ./lighttpd.conf
