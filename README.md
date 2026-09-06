@@ -72,7 +72,7 @@ podman run -d --name unbound -p 53:53/udp -p 53:53/tcp -p 8080:8080 localhost/un
 
 <BR>
 
-**Alternatively**, steps 2 and 3 can be replaced with [Compose][compose]. The `docker-compose.yaml` file builds the image automatically if it is not already present, then starts the container.
+**Alternatively**, steps 2 and 3 can be replaced with Compose. The `docker-compose.yaml` file builds the image automatically if it is not already present, then starts the container.
 
 ```bash
 BUILDAH_FORMAT=docker podman-compose up -d
