@@ -1,5 +1,5 @@
 # Base image
-FROM alpinelinux/unbound
+FROM alpinelinux/unbound:latest
 
 # Install Lighttpd
 RUN apk add --no-cache \
