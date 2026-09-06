@@ -78,7 +78,7 @@ podman run -d --name unbound -p 53:53/udp -p 53:53/tcp -p 8080:8080 localhost/un
 BUILDAH_FORMAT=docker podman-compose up -d
 ```
 
-> `BUILDAH_FORMAT=docker` is required for the same reason as `--format docker` above: the Compose Specification has no field for Podman's build format, so it must be set through this environment variable instead. It has no effect on plain Docker Compose, since Docker only builds in this format.
+> **`BUILDAH_FORMAT=docker`** is required for the same reason as **`--format docker`** above: the Compose Specification has no field for Podman's build format, so it must be set through this environment variable instead. It has no effect on plain Docker Compose, since Docker only builds in this format.
 
 <BR>
 
@@ -91,6 +91,16 @@ curl http://localhost:8080/stats
 ```
 
 > _Replace `localhost` with your system's IP or domain name._
+
+<BR>
+
+## 📝 Remarks
+
+- **`unbound-control` only supports plain text output.** Statistics are printed as one `name=value` pair per line, with no built-in option for JSON, YAML, XML, or any other structured format. See the [`unbound-control` manpage][unboundcontrol] for the full list of commands and their exact output.
+
+- **The `stats_noreset` command keeps the statistics counters intact.** Unlike `stats`, it never resets the counters after being read, so multiple consumers (a monitoring tool and manual checks, for example) can query `/stats` independently without resetting each other's data.
+
+- ⚠️ **Statistics are served over plain HTTP, with no SSL/TLS support built into this image.** The `/stats` endpoint is not encrypted, so if it is exposed beyond a trusted network, the connection should be secured by other means (for example, a reverse proxy or a VPN).
 
 [unbound]: https://www.nlnetlabs.nl/projects/unbound/about/
 [alpineunbound]: https://hub.docker.com/r/alpinelinux/unbound
