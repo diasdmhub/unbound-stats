@@ -96,8 +96,8 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           pull: true
-          push: ${{ github.event_name != 'pull_request' }}
-          # No attestation, so the image keeps Docker media types and Podman reads HEALTHCHECK
+          # Docker media types (no attestation, oci-mediatypes off) so Podman reads HEALTHCHECK
           provenance: false
+          outputs: type=image,push=${{ github.event_name != 'pull_request' }},oci-mediatypes=false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
