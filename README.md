@@ -102,6 +102,8 @@ curl http://localhost:8080/stats
 
 - ⚠️ **Statistics are served over plain HTTP, with no SSL/TLS support built into this image.** The `/stats` endpoint is not encrypted, so if it is exposed beyond a trusted network, the connection should be secured by other means (for example, a reverse proxy or a VPN).
 
+- **Prebuilt images for `amd64` and `arm64` are published on [Docker Hub][dockerhub].** They are built and pushed by the [GitHub workflow][workflow] in this repository.
+
 [unbound]: https://www.nlnetlabs.nl/projects/unbound/about/
 [alpineunbound]: https://hub.docker.com/r/alpinelinux/unbound
 [netlabs]: https://unbound.docs.nlnetlabs.nl/en/latest/manpages/unbound.conf.html
@@ -113,3 +115,5 @@ curl http://localhost:8080/stats
 [statscgi]: ./stats.cgi
 [entrypointsh]: ./entrypoint.sh
 [Dockerfile]: ./Dockerfile
+[dockerhub]: https://hub.docker.com/r/diasdmhub/unbound-stats
+[workflow]: ./.github/workflows/docker-publish.yaml
