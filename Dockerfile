@@ -1,8 +1,9 @@
 # Base image
 FROM alpinelinux/unbound:latest
 
-# Install Lighttpd
-RUN apk add --no-cache \
+# Upgrade base packages (security fixes) and install Lighttpd
+RUN apk upgrade --no-cache \
+    && apk add --no-cache \
         lighttpd \
     && mkdir -p /var/www/localhost/htdocs /usr/local/cgi-bin \
     && chown -R unbound:unbound /var/www /usr/local/cgi-bin
