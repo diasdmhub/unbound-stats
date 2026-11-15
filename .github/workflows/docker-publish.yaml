@@ -1,11 +1,26 @@
 name: Docker image
 
 on:
+  # Only files that go into the image, plus this workflow; tag pushes always run
   push:
     branches: [main]
     tags: ["v*"]
+    paths:
+      - Dockerfile
+      - entrypoint.sh
+      - stats.cgi
+      - lighttpd.conf
+      - unbound.conf
+      - .github/workflows/docker-publish.yaml
   pull_request:
     branches: [main]
+    paths:
+      - Dockerfile
+      - entrypoint.sh
+      - stats.cgi
+      - lighttpd.conf
+      - unbound.conf
+      - .github/workflows/docker-publish.yaml
   workflow_dispatch:
 
 env:
