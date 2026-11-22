@@ -16,7 +16,7 @@ Although Unbound from NLnet Labs can offer detailed statistics, it only provides
 
 This is a **sample Unbound configuration** file with the `unbound-control` command already enabled. This file is intended for quick setup and can be overwritten by binding a new file to the `/etc/unbound/unbound.conf` path.
 
-⚠️ **IThe `unbound-control` command is required for the stats to work. It is highly recommended to update this configuration file for your own environment.**
+⚠️ **The `unbound-control` command is required for the stats to work. It is highly recommended to update this configuration file for your own environment.**
 
 > **Configuration parameters are described in the [NLnet Labs documentation][netlabs].**
 
